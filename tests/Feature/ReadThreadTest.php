@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ReadThreadTest extends TestCase
 {
@@ -19,21 +19,21 @@ class ReadThreadTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_view_threads()
+    public function aUserCanViewThreads()
     {
         $this->get('/threads')
             ->assertSee($this->thread->title);
     }
 
     /** @test */
-    public function a_user_can_read_single_thread()
+    public function aUserCanReadSingleThread()
     {
         $this->get($this->thread->path())
             ->assertSee($this->thread->title);
     }
 
     /** @test */
-    public function a_user_can_read_a_thread_replies()
+    public function aUserCanReadAThreadReplies()
     {
         $reply = factory('App\Models\Reply')->create(['thread_id' => $this->thread->id]);
 

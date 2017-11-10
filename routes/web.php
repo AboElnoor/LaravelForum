@@ -21,3 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/threads', 'ThreadsController');
 Route::resource('/threads/{thread}/replies', 'RepliesController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ThreadTest extends TestCase
 {
@@ -19,23 +19,23 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function it_has_replies()
+    public function itHasReplies()
     {
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->thread->replies);
     }
 
     /** @test */
-    public function it_has_a_creator()
+    public function itHasACreator()
     {
         $this->assertInstanceOf('App\Models\User', $this->thread->creator);
     }
 
     /** @test */
-    public function it_can_add_a_reply()
+    public function itCanAddAReply()
     {
         $this->thread->addReply([
             'body' => 'someText',
-            'user_id' => 1
+            'user_id' => 1,
         ]);
 
         $this->assertCount(1, $this->thread->replies);

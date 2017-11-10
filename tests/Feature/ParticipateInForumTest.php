@@ -2,15 +2,15 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ParticipateInForumTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    public function unauthenticated_users_cant_add_reply()
+    public function unauthenticatedUsersCantAddReply()
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
@@ -18,10 +18,10 @@ class ParticipateInForumTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_user_can_reply_on_thread()
+    public function anAuthenticatedUserCanReplyOnThread()
     {
         $thread = factory('App\Models\Thread')->create();
-        $this->be($user = factory('App\Models\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
         $reply = factory('App\Models\Reply')->make();
 
