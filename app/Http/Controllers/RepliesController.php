@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class RepliesController extends Controller
 {
 
-    function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -40,7 +40,7 @@ class RepliesController extends Controller
      * @param Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function store(Thread $thread)
+    public function store($channelId, Thread $thread)
     {
         $thread->addReply([
             'body' => request('body'),

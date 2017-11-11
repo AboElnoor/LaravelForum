@@ -10,19 +10,13 @@ class CreateThreadsTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function guestsCanNotCreateThreads()
+    public function guestsCannotCreateThreads()
     {
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-
         $thread = factory('App\Models\Thread')->make();
-        $this->post('/threads', $thread->toArray());
-    }
-
-    /** @test */
-    public function guestsCannotViewCreateThreadsForm()
-    {
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-        $this->get('/threads/create');
+        $this->post('/threads', $thread->toArray())
+            ->assertRedirect('/login');
+        $this->get('/threads/create')
+            ->assertRedirect('/login');
     }
 
     /** @test */
@@ -30,7 +24,7 @@ class CreateThreadsTest extends TestCase
     {
         $this->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Models\Thread')->make();
+        $thread = factory('App\Models\Thread')->create();
 
         $this->post('threads', $thread->toArray());
         $this->get($thread->path())
