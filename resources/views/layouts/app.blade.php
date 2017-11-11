@@ -38,6 +38,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="/threads">Threads</a></li>
+                    @if(auth()->check())
+                    <li><a href="/threads/create">Create New Thread</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

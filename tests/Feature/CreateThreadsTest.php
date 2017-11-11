@@ -15,7 +15,14 @@ class CreateThreadsTest extends TestCase
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
         $thread = factory('App\Models\Thread')->make();
-        $this->post('threads', $thread->toArray());
+        $this->post('/threads', $thread->toArray());
+    }
+
+    /** @test */
+    public function guestsCannotViewCreateThreadsForm()
+    {
+        $this->expectException('Illuminate\Auth\AuthenticationException');
+        $this->get('/threads/create');
     }
 
     /** @test */
